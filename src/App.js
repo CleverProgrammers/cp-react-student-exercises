@@ -1,7 +1,9 @@
+import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import TransitionsModal from "./components/transitionModal";
 
 export const App = () => {
+  // const [modalOpen, setModalOpen] = useStatete(false)
   const sum = (a, b) => a + b;
 
   const handleClick = () => {
@@ -18,9 +20,20 @@ export const App = () => {
         alignItems: "center",
       }}
     >
-      <button onClick={handleClick}>Test my code</button>
+      <button
+        onClick={() => {
+          handleClick();
+          console.log("fefe");
+        }}
+      >
+        Test my code
+      </button>
       <Toaster />
-      <TransitionsModal text="wassupBoyyy" isModalOpen={true} />
+      {sum(1, 2) === 3 ? (
+        <TransitionsModal text="wassupBoyyy" isModalOpen={true} />
+      ) : (
+        ""
+      )}
     </div>
   );
 };
