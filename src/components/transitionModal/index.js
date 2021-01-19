@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useImperativeHandle, forwardRef } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
@@ -18,9 +18,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function TransitionsModal({ text, isModalOpen = false }) {
+export const TransitionsModal = forwardRef(({ text, isModalOpen = false }, ref)=> {
   const classes = useStyles();
   const [open, setOpen] = React.useState(isModalOpen);
+
+  useImperativeHandle(
+    ref,
+    () => ({
+      openThatModal() {
+        handleOpen()
+      }
+    })
+  )
 
   const handleOpen = () => {
     setOpen(true);
@@ -58,4 +67,4 @@ export default function TransitionsModal({ text, isModalOpen = false }) {
       </Modal>
     </div>
   );
-}
+})
