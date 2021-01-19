@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import TransitionsModal from "./components/transitionModal";
 
@@ -17,8 +17,28 @@ export const App = () => {
     <Router>
       <Switch>
 
-        <Route path='/somePage'>
-          <h1>test</h1>
+        <Route path='/exercise-one'>
+          <h1>Exercise 1</h1>
+
+          <Link to='/exercise-two'>
+            <button>Go to exercise 2</button>
+          </Link>
+
+          <Link to='/'>
+            <button>Go home!!!!!</button>
+          </Link>
+        </Route>
+
+        <Route path='/exercise-two'>
+          <h1>Exercise 2</h1>
+
+          <Link to='/exercise-one'>
+            <button>Go to exercise 1</button>
+          </Link>
+          
+          <Link to='/'>
+            <button>Go home!!!!!</button>
+          </Link>
         </Route>
 
         <Route path='/'>
@@ -43,6 +63,15 @@ export const App = () => {
             ) : (
                 ""
               )}
+          </div>
+
+          <div className="exercises">
+              <Link to='/exercise-one'>
+                <button>Home 👉 Exercise 1</button>
+              </Link>
+              <Link to='/exercise-two'>
+                <button>Home 👉 Exercise 2</button>
+              </Link>
           </div>
         </Route>
 
