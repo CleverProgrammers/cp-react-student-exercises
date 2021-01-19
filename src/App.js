@@ -1,15 +1,34 @@
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import TransitionsModal from "./components/transitionModal";
+import useWindowSize from "react-use/lib/useWindowSize";
+import Confetti from "react-confetti";
+
+const sum = (a, b) => a + b;
 
 export const App = () => {
-  // const [modalOpen, setModalOpen] = useStatete(false)
-  const sum = (a, b) => a + b;
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const { width, height } = useWindowSize();
 
   const handleClick = () => {
-    sum(1, 2) === 3
-      ? toast.success("Your code passed!")
-      : toast.error("Your code failed");
+    if (sum(1, 2) === 3) {
+      toast.success("Your code passed!");
+      setModalOpen(true);
+    } else {
+      toast.error("Your code failed");
+    }
+
+    // sum(1, 2) === 3
+    //   ? toast.success("Your code passed!") &&
+    //     setModalOpen(true) &&
+    //     console.log("hello") &&
+    //     console.log(modalOpen)
+    //   : toast.error("Your code failed");
+  };
+
+  const handleCloseModalClick = () => {
+    setModalOpen(false);
   };
 
   return (
@@ -20,19 +39,16 @@ export const App = () => {
         alignItems: "center",
       }}
     >
-      <button
-        onClick={() => {
-          handleClick();
-          console.log("fefe");
-        }}
-      >
-        Test my code
-      </button>
+      <button onClick={handleClick}>Test my code</button>
+      <button onClick={handleCloseModalClick}>Clear</button>
+      {/* {modalCustom}
+      {showModal} */}
       <Toaster />
-      {sum(1, 2) === 3 ? (
-        <TransitionsModal text="wassupBoyyy" isModalOpen={true} />
-      ) : (
-        ""
+      {modalOpen && (
+        <>
+          <TransitionsModal isModalOpen={modalOpen} />
+          <Confetti width={width} height={height} />
+        </>
       )}
     </div>
   );

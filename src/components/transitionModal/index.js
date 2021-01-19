@@ -32,9 +32,9 @@ export default function TransitionsModal({ text, isModalOpen = false }) {
 
   return (
     <div>
-      <button type="button" onClick={handleOpen}>
+      {/* <button type="button" onClick={handleOpen}>
         {text || "react-transition-group"}
-      </button>
+      </button> */}
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
