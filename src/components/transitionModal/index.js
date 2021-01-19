@@ -9,12 +9,14 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    // outline: "none",
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
-    border: "2px solid #000",
+    // border: "1px solid #000",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
+    outline: "none",
   },
 }));
 
@@ -49,9 +51,11 @@ export default function TransitionsModal({ text, isModalOpen = false }) {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <h2 id="transition-modal-title">Transition modal</h2>
+            <h2 id="transition-modal-title">
+              🚀 Congratulations! You solved the problem 🌐!
+            </h2>
             <p id="transition-modal-description">
-              react-transition-group animates me.
+              ✅ Your code passed all the tests successfully
             </p>
           </div>
         </Fade>

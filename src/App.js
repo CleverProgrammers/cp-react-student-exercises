@@ -3,10 +3,10 @@ import toast, { Toaster } from "react-hot-toast";
 import TransitionsModal from "./components/transitionModal";
 import useWindowSize from "react-use/lib/useWindowSize";
 import Confetti from "react-confetti";
+import { Box, Button, Grid } from "@material-ui/core";
+import { sum } from "./exercises/1-sum";
 
-const sum = (a, b) => a + b;
-
-export const App = () => {
+const App = () => {
   const [modalOpen, setModalOpen] = useState(false);
 
   const { width, height } = useWindowSize();
@@ -18,13 +18,6 @@ export const App = () => {
     } else {
       toast.error("Your code failed");
     }
-
-    // sum(1, 2) === 3
-    //   ? toast.success("Your code passed!") &&
-    //     setModalOpen(true) &&
-    //     console.log("hello") &&
-    //     console.log(modalOpen)
-    //   : toast.error("Your code failed");
   };
 
   const handleCloseModalClick = () => {
@@ -32,17 +25,26 @@ export const App = () => {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
+    <Grid
+      container
+      spacing={24}
+      direction="row"
+      alignItems="center"
+      justify="center"
+      style={{ minHeight: "100vh", backgroundColor: "#1a1f36" }}
     >
-      <button onClick={handleClick}>Test my code</button>
-      <button onClick={handleCloseModalClick}>Clear</button>
-      {/* {modalCustom}
-      {showModal} */}
+      <Button variant="contained" color="primary" onClick={handleClick}>
+        TEST MY CODE
+      </Button>
+      <Box m={1} />
+      <Button
+        variant="contained"
+        color="default"
+        onClick={handleCloseModalClick}
+      >
+        Clear
+      </Button>
+
       <Toaster />
       {modalOpen && (
         <>
@@ -50,6 +52,8 @@ export const App = () => {
           <Confetti width={width} height={height} />
         </>
       )}
-    </div>
+    </Grid>
   );
 };
+
+export default App;
