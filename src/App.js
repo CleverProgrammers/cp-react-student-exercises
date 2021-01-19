@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import TransitionsModal from "./components/transitionModal";
 
@@ -13,27 +14,39 @@ export const App = () => {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <button
-        onClick={() => {
-          handleClick();
-          console.log("fefe");
-        }}
-      >
-        Test my code
+    <Router>
+      <Switch>
+
+        <Route path='/somePage'>
+          <h1>test</h1>
+        </Route>
+
+        <Route path='/'>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <button
+              onClick={() => {
+                handleClick();
+                console.log("fefe");
+              }}
+            >
+              Test my code
       </button>
-      <Toaster />
-      {sum(1, 2) === 3 ? (
-        <TransitionsModal text="wassupBoyyy" isModalOpen={true} />
-      ) : (
-        ""
-      )}
-    </div>
+            <Toaster />
+            {sum(1, 2) === 3 ? (
+              <TransitionsModal text="wassupBoyyy" isModalOpen={true} />
+            ) : (
+                ""
+              )}
+          </div>
+        </Route>
+
+      </Switch>
+    </Router>
   );
 };
